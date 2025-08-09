@@ -1,31 +1,34 @@
 {
     "manifest_version": 3,
     "name": "Bad Clients Extension",
-    "description": "Enables gig and proposal analysis directly on Upwork and Fiverr",
-    "options_ui": {
-        "page": "src/pages/options/index.html"
-    },
-    "action": {
-        "default_popup": "src/pages/popup/index.html",
-        "default_icon": {
-            "32": "icon-32.png"
-        }
-    },
-    "chrome_url_overrides": {
-        "newtab": "src/pages/newtab/index.html"
-    },
+    "description": "Enables gig and proposal analysis directly on Upwork",
     "icons": {
         "128": "icon-128.png"
     },
-    "permissions": ["activeTab"],
+    "action": {
+        "default_icon": "public/icon-32.png",
+        "default_popup": "src/pages/popup/index.html"
+    },
+    "permissions": ["activeTab", "cookies", "storage"],
+    "host_permissions": [
+        "https://*.upwork.com/*",
+        "https://upwork.com/*",
+        "http://localhost:3000/*",
+        "https://staging-badclients.vercel.app/*",
+        "https://www.badclients.app/*"
+    ],
     "content_scripts": [
         {
-            "matches": ["http://*/*", "https://*/*", "<all_urls>"],
+            "matches": [
+                "https://*.upwork.com/*",
+                "http://localhost:3000/*",
+                "https://staging-badclients.vercel.app/*",
+                "https://www.badclients.app/*"
+            ],
             "js": ["src/pages/content/index.tsx"],
             "css": ["contentStyle.css"]
         }
     ],
-    "devtools_page": "src/pages/devtools/index.html",
     "web_accessible_resources": [
         {
             "resources": ["contentStyle.css", "icon-128.png", "icon-32.png"],

@@ -1,11 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
 @import "tailwindcss";
+@plugin "daisyui" {
+    logs: true;
+}
 
-@theme {
-    --animate-spin-slow: spin 20s linear infinite;
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-primary: oklch(0.6225 0.2175 32.6);
+}
 
-    @keyframes spin {
-        to {
-            transform: rotate(360deg);
-        }
-    }
+@plugin "daisyui/theme" {
+    name: "dark";
+    prefersdark: true;
+    --color-base-100: oklch(0.2793 0.0156 31.26);
+    --color-base-200: oklch(0.24 0.013 31.26);
+    --color-base-300: oklch(0.2 0.0105 31.26);
+    --color-primary: oklch(0.6225 0.2175 32.6);
 }
